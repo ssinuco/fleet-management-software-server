@@ -1,0 +1,17 @@
+type Query {
+  taxis(query: String, page: Int, pageSize: Int): [Taxi!]!
+  trajectories(taxiId: String!, date: String!): [Trajectory!]!
+}
+
+type Taxi {
+  id: ID!
+  plate: String!
+}
+
+type Trajectory {
+  id: ID!
+  taxiId: ID!
+  date: String!
+  latitude: Float!
+  longitude: Float!
+}
