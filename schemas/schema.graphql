@@ -1,0 +1,53 @@
+type Query {
+  """
+    Retorna todos los vehículos registrados en el sistema cuya placa coincida con el parámetro query
+  """
+  taxis(
+  """
+    Criterio de búsqueda
+  """
+  query: String,
+  """
+    Página
+  """
+  page: Int,
+  """
+    Tamaño de la página
+  """
+  pageSize: Int): [Taxi!]!
+  trajectories(taxiId: String!, date: String!): [Trajectory!]!
+}
+
+type Taxi {
+"""
+Identificador
+"""
+  id: ID!
+"""
+Placa
+"""
+  plate: String!
+}
+
+type Trajectory {
+"""
+  Identificador
+"""
+  id: ID!
+"""
+Identificador del taxi
+"""
+  taxiId: ID!
+"""
+Fecha
+"""
+  date: String!
+"""
+Latitud
+"""
+  latitude: Float!
+"""
+Longitud
+"""
+  longitude: Float!
+}
