@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Taxi {
+  @@map(name: "taxi")
+  id Int @id
+  plate String
+  trajectories Trajectory[]
+}
+
+model Trajectory {
+  @@map(name: "gps_trajectory")
+  id Int @id
+  taxi Taxi @relation(fields: [taxiId], references: [id])
+  taxiId Int @map(name: "taxi_id")
+  date DateTime @db.Timestamptz
+  latitude Float
+  longitude Float
+}
